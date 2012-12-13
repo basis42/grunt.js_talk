@@ -1,1 +1,140 @@
-index
+<!doctype html>
+<html lang="de">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Javascript- und CSS-Resourcen-Verwaltung mit grunt.js</title>
+
+    <meta name="description" content="grunt.js ist Automationstool mit den">
+    <meta name="author" content="Mario Rutz">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h2>Javascript- und CSS- <br>Resourcenverwaltung mit</h2>
+          <h1>grunt.js</h1>
+          <h4>12.12.2012 Mario Rutz</h4>
+        <p>
+        <br>
+    </p>
+
+
+</section>
+    <section>
+        <h2>Was ist grunt.js?</h2>
+<p>Die Projektwebsite unter <a href="http://gruntjs.com/">gruntjs.com</a> sagt:<br>
+</p>
+<blockquote>
+    Grunt is a task-based command line build tool for JavaScript projects
+</blockquote>
+        <br>Aber: Nicht nur JavaScript!<br>
+</section>
+        <section>
+            <h2>Wofür brauchT MAN grunt.js?</h2>
+            <p>CSS und Javascript</p>
+            <ul>
+                <li>Minifizieren</li>
+                <li>Concatinieren</li>
+                <li>Linting</li>
+                <li>Compilieren von Sass / Scss</li>
+                <li>...</li>
+            </ul>
+            <p>
+            <br>
+        </p>
+    </section>
+    <section>
+    <h2>Warum grunt.js?</h2>
+    <div>
+        <ul>
+            <li>Javascript ist für Webentwickler natürliche Sprache</li>
+            <li>Einfach lesbare Syntax (vgl. z.B. Ant und Rake)</li>
+            <li>Frontend-tasks Out-of-the-box</li>
+            <li>Sehr flache Lernkurve</li>
+            <li>erweiterbar</li>
+            <li>Gut in bestehenden Projekten einsetzbar</li>
+        </ul>
+    </div>
+</section>
+    <section>
+    <h2>Installation</h2>
+    <p align="center">Vorraussetzung ist node.js</p>
+    <p align="center">
+        <code>
+        sudo npm install -g grunt-cli<br>
+        sudo npm install grunt
+        </code>
+    </p>
+</section>
+    <section>
+        <h2>Projektaufbau<br>
+        </h2>
+        <p>gruntfile.js<br>
+    </p>
+</section>
+<section>
+    <h2>Links</h2>
+</section>
+<section>
+    <h2>Title</h2>
+</section>
+</div>
+
+    </div>
+
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
