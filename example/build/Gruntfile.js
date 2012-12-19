@@ -24,13 +24,16 @@ module.exports = function(grunt) {
     },
     sass : {
       scss : {
-        src : '../css/main.scss',
-        dest : '../css/main.css'
+        options : {
+          debugInfo : true,
+          lineNumber : true
+        },
+        files : {'../css/all.css' : ['../css/main.scss']}
       }
     },
     mincss : {
       compress : {
-        files : {'../css/main.min.css' : ['../css/main.css']}
+        files : {'../css/all.min.css' : ['../css/all.css']}
       }
     }
   });
@@ -41,9 +44,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task.
-  grunt.registerTask('default', 'sass cssmin min');
+  grunt.registerTask('default', ['sass', 'mincss', 'uglify']);
 
-  // example task for file access
+  // just example task for file access, better don't do this here
+  // as this should got to a plugin instead to have only configs
+  // in Gruntfile.js
   grunt.registerTask('touchindex', 'Touches Index', function() {
     var fs = require('fs');
 

@@ -1,16 +1,21 @@
-$blue: #3bbfce;
-$red : #ff0000;
 
-body {
-  background : $red;
-}
+@import "included";
+
+$blue: #3bbfce;
+$margin: 16px;
 
 .content {
-  border : 5px dotted $blue;
-  text-align: center;
+  border: 5px dotted $blue;
+  color:
+    darken($blue, 35%);
+}
+
+
+.border {
+  padding: $margin / 2;
+  margin: $margin / 2;
 }
 
 .invisible {
      visibility: hidden;
 }
-

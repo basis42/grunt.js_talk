@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
     <link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="css/additional.css">
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
@@ -30,42 +31,45 @@
 
   <body>
 
-    <div class="reveal">
+<div class="reveal">
 
-      <!-- Any section element inside of this container is displayed as a slide -->
-      <div class="slides">
-        <section>
-          <h2>Javascript- und CSS- <br>Resourcenverwaltung mit</h2>
-          <h1>grunt.js</h1>
-          <h4>12.12.2012 Mario Rutz</h4>
-        <p>
-        <br>
-    </p>
-
-
-</section>
+<!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section class="intro">
+      <h2>Javascript- und CSS- <br>Resourcenverwaltung mit</h2>
+      <h1>grunt.js</h1>
+      <h4>12.12.2012 Mario Rutz</h4>
+    </section>
     <section>
-        <h2>Was ist grunt.js?</h2>
-<p>Die Projektwebsite unter <a href="http://gruntjs.com/">gruntjs.com</a> sagt:<br>
-</p>
-<blockquote>
-    Grunt is a task-based command line build tool for JavaScript projects
-</blockquote>
-        <br>Aber: Nicht nur JavaScript!<br>
-</section>
-        <section>
-            <h2>Wofür brauchT MAN grunt.js?</h2>
-            <p>CSS und Javascript</p>
-            <ul>
-                <li>Minifizieren</li>
-                <li>Concatinieren</li>
-                <li>Linting</li>
-                <li>Compilieren von Sass / Scss</li>
-                <li>...</li>
-            </ul>
-            <p>
-            <br>
-        </p>
+      <h2>Was ist grunt.js?</h2>
+        <p>Die Projektwebsite unter <a href="http://gruntjs.com/">gruntjs.com</a> sagt:</p>
+        <blockquote>
+          Grunt is a task-based command line build tool for JavaScript projects
+        </blockquote>
+    </section>
+    <section>
+      <section>
+        <h2>Was kann grunt.js für uns tun?</h2>
+          <p>CSS und Javascript</p>
+          <ul>
+            <li>Minifizieren</li>
+            <li>Concatinieren</li>
+            <li>Linting</li>
+            <li>Compilieren von Sass / Scss</li>
+            <li>Watch auf Dateien und Ordner</li>
+            <li>...</li>
+          </ul>
+      </section>
+      <section>
+          <h3>... und eine Auswahl an weiteren Tasks:</h3>
+          <ul>
+            <li>Handling von minifizierten Resourcen(Versionierung und html Manipuilation)</li>
+            <li>automatisiertes Testen mit jasmine und phantom.js</li>
+            <li>Minifizierung von Images</li>
+            <li>Compilierung von LESS / Compass / CoffeeScript / ...</li>
+            <li>... alles ist möglich!</li>
+          </ul>
+      </section>
     </section>
     <section>
     <h2>Warum grunt.js?</h2>
@@ -73,7 +77,7 @@
         <ul>
             <li>Javascript ist für Webentwickler natürliche Sprache</li>
             <li>Einfach lesbare Syntax (vgl. z.B. Ant und Rake)</li>
-            <li>Frontend-tasks Out-of-the-box</li>
+            <li>Klassische Frontend-Tasks Out-of-the-box</li>
             <li>Sehr flache Lernkurve</li>
             <li>erweiterbar</li>
             <li>Gut in bestehenden Projekten einsetzbar</li>
@@ -82,25 +86,142 @@
 </section>
     <section>
     <h2>Installation</h2>
-    <p align="center">Vorraussetzung ist node.js</p>
-    <p align="center">
-        <code>
-        sudo npm install -g grunt-cli<br>
-        sudo npm install grunt
-        </code>
-    </p>
-</section>
+    <ul>
+      <li>grunt.js version >= 0.4 (momentan RC3)</li>
+      <li>Vorraussetzung ist <a hrefe="http://nodejs.org/">node.js</a> version > 0.8.0</li>
+    </ul>
+      <pre><code class="bash">mario@ubuntu:~/sudo npm install -g grunt-cli
+mario@ubuntu:~/sudo npm install grunt</code></pre>
+  </section>
     <section>
         <h2>Projektaufbau<br>
         </h2>
-        <p>gruntfile.js<br>
+        besteht im wesentlichen aus:
+        <ul>
+          <li>package.json</li>
+          <li>Gruntfile (Gruntfile.js oder Gruntfile.coffee)</li>
+        </ul>
     </p>
 </section>
 <section>
-    <h2>Links</h2>
+    <h2>package.json</h2>
+    <p>Verwaltung von Dependancies / Plugins via <a href="https://npmjs.org">npm</a></p>
+    <p>Beispiel package.json:</p>
+    <pre><code>
+  {
+    "name": "Build_example_app",
+    "version": "0.1.0",
+    "dependencies": {
+      "grunt": "~0.4.0",
+      "grunt-contrib-watch" : "~0.1.0",
+      "grunt-contrib-uglify" : "~0.1.0",
+      "grunt-contrib-mincss" : "~0.3.0",
+      "grunt-contrib-sass" : "https://github.com/basis42/grunt-..."
+    }
+  }
+</code></pre>
+
+
+
 </section>
 <section>
-    <h2>Title</h2>
+  <section>
+    <h2>Gruntfile.js</h2>
+    minimales Beispiel
+    <pre><code>module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    mincss : {
+      compress : {
+        files : {'../css/all.min.css' : ['../css/all.css']}
+      }
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-mincss');
+
+  grunt.registerTask('default', ['mincss']);
+};</code></pre>
+  </section>
+  <section>
+<pre><code>mario@ubuntu:~/grunt.js_talk/example/build$ grunt
+Running "mincss:compress" (mincss) task
+File ../css/all.min.css created.
+Uncompressed size: 743 bytes.
+Compressed size: 244 bytes gzipped (696 bytes minified).
+
+Done, without errors.
+mario@ubuntu:~/grunt.js_talk/example/build$</code></pre>
+  </section>
+  <section>
+  <h2>Etwas komplexeres Beispiel</h2>
+<pre><code>module.exports = function(grunt) {
+  grunt.initConfig({
+    lint : {
+      files : [ 'grunt.js', '../js/**/*.js' ]
+    },
+    watch : {
+      css : {
+        files : ['../css/**/*.scss'],
+        tasks : ['sass', 'mincss']
+      },
+      js : {
+        files : ['../js/**/*.js'],
+        tasks : 'min'
+      }
+    },
+    uglify : {
+      js : {
+        files : {'../js/app.min.js' : ['../js/app.min.js']}
+      }
+    },
+    sass : {
+      scss : {
+        options : {
+          debugInfo : true,
+          lineNumber : true
+        },
+        files : {'../css/all.css' : ['../css/main.scss']}
+      }
+    },
+    mincss : {
+      compress : {
+        files : {'../css/all.min.css' : ['../css/all.css']}
+      }
+    }
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-mincss');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+
+  grunt.registerTask('default', ['sass', 'mincss', 'uglify']);
+};</code></pre>
+  </section>
+  <section>
+  <pre><code>mario@ubuntu:~/grunt.js_talk/example/build$ grunt
+Running "sass:scss" (sass) task
+
+Running "mincss:compress" (mincss) task
+File ../css/all.min.css created.
+Uncompressed size: 743 bytes.
+Compressed size: 244 bytes gzipped (696 bytes minified).
+
+Running "uglify:js" (uglify) task
+File "../js/app.min.js" created.
+Uncompressed size: 75 bytes.
+Compressed size: 85 bytes gzipped (75 bytes minified).
+
+Done, without errors.
+mario@ubuntu:~/grunt.js_talk/example/build$</code></pre>
+  </section>
+</section>
+<section>
+  <h2>Plugins</h2>
+  Minimales Beispiel
+  <pre><code></code></pre>
 </section>
 </div>
 
