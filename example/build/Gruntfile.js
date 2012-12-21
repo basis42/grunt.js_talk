@@ -38,17 +38,21 @@ module.exports = function(grunt) {
     }
   });
 
+  // tasks that are pulled form npm repo
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-mincss');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
+  // local defined taks
+  grunt.loadTasks('example-local-plugin/tasks');
+
   // Default task.
   grunt.registerTask('default', ['sass', 'mincss', 'uglify']);
 
-  // just example task for file access, better don't do this here
+  // just example task for file access. Better don't do this here
   // as this should got to a plugin instead to have only configs
-  // in Gruntfile.js
+  // in Gruntfile.js. Shows how to declare simple tasks inline anyway
   grunt.registerTask('touchindex', 'Touches Index', function() {
     var fs = require('fs');
 

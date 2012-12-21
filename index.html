@@ -52,37 +52,48 @@
         <h2>Was kann grunt.js für uns tun?</h2>
           <p>CSS und Javascript</p>
           <ul>
-            <li>Minifizieren</li>
-            <li>Concatinieren</li>
-            <li>Linting</li>
-            <li>Compilieren von Sass / Scss</li>
-            <li>Watch auf Dateien und Ordner</li>
-            <li>...</li>
+            <li class="fragment roll-in" >Minifizieren</li>
+            <li class="fragment roll-in">Concatinieren</li>
+            <li class="fragment roll-in">Linting</li>
+            <li class="fragment roll-in">Compilieren von Sass / Scss</li>
+            <li class="fragment roll-in">Watch auf Dateien und Ordner</li>
+            <li class="fragment roll-in">Integrierter Webserver</li>
           </ul>
       </section>
       <section>
           <h3>... und eine Auswahl an weiteren Tasks:</h3>
           <ul>
-            <li>Handling von minifizierten Resourcen(Versionierung und html Manipuilation)</li>
-            <li>automatisiertes Testen mit jasmine und phantom.js</li>
-            <li>Minifizierung von Images</li>
-            <li>Compilierung von LESS / Compass / CoffeeScript / ...</li>
-            <li>... alles ist möglich!</li>
+            <li class="fragment roll-in">Handling von minifizierten Resourcen(Versionierung und html Manipuilation)</li>
+            <li class="fragment roll-in">automatisiertes Testen mit jasmine und phantom.js</li>
+            <li class="fragment roll-in">Minifizierung von Images</li>
+            <li class="fragment roll-in">Compilierung von LESS / Compass / CoffeeScript / ...</li>
+            <li class="fragment roll-in">... alles ist möglich!</li>
           </ul>
       </section>
     </section>
     <section>
-    <h2>Warum grunt.js?</h2>
-    <div>
-        <ul>
-            <li>Javascript ist für Webentwickler natürliche Sprache</li>
-            <li>Einfach lesbare Syntax (vgl. z.B. Ant und Rake)</li>
-            <li>Klassische Frontend-Tasks Out-of-the-box</li>
-            <li>Sehr flache Lernkurve</li>
-            <li>erweiterbar</li>
-            <li>Gut in bestehenden Projekten einsetzbar</li>
-        </ul>
-    </div>
+      <section>
+      <h2>Warum grunt.js?</h2>
+      <div>
+          <ul>
+              <li class="fragment roll-in">Javascript ist für Webentwickler natürliche Sprache</li>
+              <li class="fragment roll-in">Einfach lesbare Syntax (vgl. z.B. Ant und Rake)</li>
+              <li class="fragment roll-in">Klassische Frontend-Tasks Out-of-the-box</li>
+              <li class="fragment roll-in">Sehr flache Lernkurve</li>
+              <li class="fragment roll-in">erweiterbar</li>
+              <li class="fragment roll-in">Gut in bestehenden Projekten einsetzbar</li>
+          </ul>
+      </div>
+  </section>
+  <section>
+   <h2>Alternativen?</h2>
+   <ul>
+     <li>jake (kein watch Task, webserver)</li>
+     <li>brunch.io (Stärken vor allem in Scaffolding)</li>
+     <li>Ant (Plugins / Erweiterungen sind recht aufwendig einzupflegen, krude Syntax)</li>
+     <li>Weitere ?</li>
+   </ul>
+  </section>
 </section>
     <section>
     <h2>Installation</h2>
@@ -96,10 +107,10 @@ mario@ubuntu:~/sudo npm install grunt</code></pre>
     <section>
         <h2>Projektaufbau<br>
         </h2>
-        besteht im wesentlichen aus:
+        <p>besteht im wesentlichen aus:</p>
         <ul>
+          <li>Gruntfile.js</li>
           <li>package.json</li>
-          <li>Gruntfile (Gruntfile.js oder Gruntfile.coffee)</li>
         </ul>
     </p>
 </section>
@@ -197,6 +208,8 @@ mario@ubuntu:~/grunt.js_talk/example/build$</code></pre>
   grunt.loadNpmTasks('grunt-contrib-mincss');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
+  grunt.loadTasks('example-local-plugin/tasks');
+
   grunt.registerTask('default', ['sass', 'mincss', 'uglify']);
 };</code></pre>
   </section>
@@ -220,8 +233,64 @@ mario@ubuntu:~/grunt.js_talk/example/build$</code></pre>
 </section>
 <section>
   <h2>Plugins</h2>
-  Minimales Beispiel
-  <pre><code></code></pre>
+  <ul>
+    <li class="fragment roll-in">Lokale Plugins</li>
+    <li class="fragment roll-in">Plugins via npm</li>
+  </ul>
+</section>
+<section>
+  <section>
+    <h2>Lokal definiertes Plugin</h2>
+    <p class="fragment roll-in">
+    Gruntfile.js:
+    <pre class="fragment roll-in"><code>// local defined taks
+grunt.loadTasks('example-local-plugin/tasks');</code></pre>
+    </p>
+    <p class="fragment roll-in">
+    example-local-plugin/tasks/example.tasks.js:
+    <pre class="fragment roll-in"><code>'use strict';
+
+module.exports = function(grunt) {
+
+  grunt.registerTask('hello', 'Write greeting to console.', function(){
+    console.log('Hello! This is the hello task!');
+  });
+};</code></pre>
+    </p>
+  </section>
+  <section>
+  <a href="http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/">John Resig - ECMAScript 5 Strict Mode, JSON, and More</a>
+  <blockquote>
+    Strict Mode is a new feature in ECMAScript 5 that allows you to place a program, or a function, in a "strict" operating context. This strict context prevents certain actions from being taken and throws more exceptions.
+  </blockquote>
+  <blockquote>Strict mode helps out in a couple ways:
+    <ul>
+      <li>It catches some common coding bloopers, throwing exceptions.</li>
+      <li>It prevents, or throws errors, when relatively "unsafe" actions are taken (such as gaining access to the global object).</li>
+      <li>It disables features that are confusing or poorly thought out.</li>
+    </ul>
+  </blockquote>
+  </section>
+</section>
+<section>
+ <h2>wo wird grunt.js verwendet?</h2>
+ <ul>
+   <li>Großer Teil des jQuery Ecosystems (jquery, qunit, jqueryui, sizzle, ...)</li>
+   <li>Yeoman</li>
+   <li>reveal.js</li>
+   <li>...</li>
+ </ul>
+</section>
+<section>
+  <section>
+    <h2>Ende</h2>
+  </section>
+  <section>
+    <h2>Links</h2>
+    <p><a href="http://gruntjs.com/">grunt.js Projektseite</a></p>
+    <p><a href="http://nodejs.org/">node.js Projektseite</a></p>
+    <p><a href="https://npmjs.org/">npm - Node Package Manager Projektseite</a></p>
+  </section>
 </section>
 </div>
 
