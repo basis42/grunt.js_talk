@@ -38,11 +38,11 @@
     <section class="intro">
       <h2>Javascript- und CSS- <br>Resourcenverwaltung mit</h2>
       <h1>grunt.js</h1>
-      <h4>12.12.2012 Mario Rutz</h4>
+      <h4>17.01.2013 Mario Rutz</h4>
     </section>
     <section>
       <h2>Was ist grunt.js?</h2>
-        <p>Die Projektwebsite unter <a href="http://gruntjs.com/">gruntjs.com</a> sagt:</p>
+        <p>Entwickelt wird grunt.js von <a href="http://benalman.com/" target="_new">Ben Alman</a>, die Projektwebsite unter <a href="http://gruntjs.com/">gruntjs.com</a> sagt:</p>
         <blockquote>
           Grunt is a task-based command line build tool for JavaScript projects
         </blockquote>
@@ -98,13 +98,13 @@
     <section>
     <h2>Installation</h2>
     <ul>
-      <li>grunt.js version >= 0.4 (momentan RC3)</li>
-      <li>Vorraussetzung ist <a hrefe="http://nodejs.org/">node.js</a> version > 0.8.0</li>
+      <li>grunt.js version &gt;= 0.4 (momentan RC5)</li>
+      <li>Vorraussetzung ist <a href="http://nodejs.org/">node.js</a> version &gt; 0.8.0</li>
     </ul>
       <pre><code class="bash">mario@ubuntu:~/sudo npm install -g grunt-cli
 mario@ubuntu:~/sudo npm install grunt</code></pre>
   </section>
-    <section>
+  <section>
         <h2>Projektaufbau<br>
         </h2>
         <p>besteht im wesentlichen aus:</p>
@@ -112,8 +112,7 @@ mario@ubuntu:~/sudo npm install grunt</code></pre>
           <li>Gruntfile.js</li>
           <li>package.json</li>
         </ul>
-    </p>
-</section>
+  </section>
 <section>
     <h2>package.json</h2>
     <p>Verwaltung von Dependancies / Plugins via <a href="https://npmjs.org">npm</a></p>
@@ -273,6 +272,13 @@ module.exports = function(grunt) {
   </section>
 </section>
 <section>
+  <h2>Plugins via npm</h2>
+  <ul>
+    <li class="fragment roll-in">grunt-contrib-* plugins sind kompatibel zu 0.4</li>
+    <li class="fragment roll-in"><a href="http://gruntjs.com/" target="new">Verfügbare Plugins</a></li>
+  </ul>
+</section>
+<section>
  <h2>wo wird grunt.js verwendet?</h2>
  <ul>
    <li>Großer Teil des jQuery Ecosystems (jquery, qunit, jqueryui, sizzle, ...)</li>
@@ -283,13 +289,14 @@ module.exports = function(grunt) {
 </section>
 <section>
   <section>
-    <h2>Ende</h2>
+    <h2>Fragen?</h2>
   </section>
   <section>
     <h2>Links</h2>
     <p><a href="http://gruntjs.com/">grunt.js Projektseite</a></p>
     <p><a href="http://nodejs.org/">node.js Projektseite</a></p>
     <p><a href="https://npmjs.org/">npm - Node Package Manager Projektseite</a></p>
+    <p><a href="https://github.com/basis42/grunt.js_talk/">Vorgestelle Beispiele auf github.com</a></p>
   </section>
 </section>
 </div>
