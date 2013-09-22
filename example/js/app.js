@@ -1,4 +1,4 @@
 
 $(document).ready(function(){
-  $('.invisible').css({'visibility':'visible'});
+  $('.invisible').css({'visibility':'visible'})
 });

@@ -7,19 +7,23 @@ module.exports = function(grunt) {
       files : [ 'grunt.js', '../js/**/*.js' ]
     },
     watch : {
+      options : {
+        livereload : true,
+        spawn: false
+      },
       css : {
         files : ['../css/**/*.scss'],
-        tasks : ['sass', 'mincss']
+        tasks : ['sass', 'cssmin'],
       },
       js : {
-        files : ['../js/**/*.js'],
-        tasks : 'min'
+        files : ['../js/**/*.js', '!../js/**/*.min.js'],
+        tasks : 'uglify',
       }
 
     },
     uglify : {
       js : {
-        files : {'../js/app.min.js' : ['../js/app.min.js']}
+        files : {'../js/app.min.js' : ['../js/app.js']}
       }
     },
     sass : {
@@ -31,7 +35,7 @@ module.exports = function(grunt) {
         files : {'../css/all.css' : ['../css/main.scss']}
       }
     },
-    mincss : {
+    cssmin : {
       compress : {
         files : {'../css/all.min.css' : ['../css/all.css']}
       }
@@ -41,14 +45,14 @@ module.exports = function(grunt) {
   // tasks that are pulled form npm repo
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-mincss');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // local defined taks
   grunt.loadTasks('example-local-plugin/tasks');
 
   // Default task.
-  grunt.registerTask('default', ['sass', 'mincss', 'uglify']);
+  grunt.registerTask('default', ['sass', 'cssmin', 'uglify']);
 
   // just example task for file access. Better don't do this here
   // as this should got to a plugin instead to have only configs

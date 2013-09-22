@@ -6,7 +6,7 @@
 
     <title>Javascript- und CSS-Resourcen-Verwaltung mit grunt.js</title>
 
-    <meta name="description" content="grunt.js ist Automationstool mit den">
+    <meta name="description" content="grunt.js ist Automationstoo">
     <meta name="author" content="Mario Rutz">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -38,7 +38,19 @@
     <section class="intro">
       <h2>Javascript- und CSS- <br>Resourcenverwaltung mit</h2>
       <h1>grunt.js</h1>
-      <h4>17.01.2013 Mario Rutz</h4>
+      <h4>Mario Rutz</h4>
+      <h4><a href="http://twitter.com/basis42" target="_new">@basis42</a> --- <a href="http://www.basis42.de" target="_new">http://www.basis42.de</a></h4>
+    </section>
+    <section>
+      <h2>Mario Rutz</h2>
+      <ul>
+      	<li class="fragment roll-in">Erste Programmiersprache Assembler (6510)</li>
+      	<li class="fragment roll-in">OOP in Java, C++</li>
+      	<li class="fragment roll-in">seit 1999 Webentwickler</li>
+      	<li class="fragment roll-in">PHP Einstieg mit PHP3</li>
+      	<li class="fragment roll-in">Javascript als 2. Sprache</li>
+      	<li class="fragment roll-in">und wenn es mich beißt auch gerne mal wieder Java!</li>
+      </ul>
     </section>
     <section>
       <h2>Was ist grunt.js?</h2>
@@ -52,7 +64,7 @@
         <h2>Was kann grunt.js für uns tun?</h2>
           <p>CSS und Javascript</p>
           <ul>
-            <li class="fragment roll-in" >Minifizieren</li>
+            <li class="fragment roll-in">Minifizieren</li>
             <li class="fragment roll-in">Concatinieren</li>
             <li class="fragment roll-in">Linting</li>
             <li class="fragment roll-in">Compilieren von Sass / Scss</li>
@@ -89,8 +101,8 @@
     <section>
     <h2>Installation</h2>
     <ul>
-      <li>grunt.js version &gt;= 0.4 (momentan RC5)</li>
-      <li>Vorraussetzung ist <a href="http://nodejs.org/">node.js</a> version &gt; 0.8.0</li>
+      <li>grunt.js version &gt;= 0.4 (momentan 0.4.1)</li>
+      <li>Vorraussetzung ist <a href="http://nodejs.org/">node.js</a> version &gt;= 0.8</li>
     </ul>
       <pre><code class="bash">mario@ubuntu:~/sudo npm install -g grunt-cli
 mario@ubuntu:~/sudo npm install grunt</code></pre>
@@ -113,10 +125,10 @@ mario@ubuntu:~/sudo npm install grunt</code></pre>
     "name": "Build_example_app",
     "version": "0.1.0",
     "dependencies": {
-      "grunt": "~0.4.0",
-      "grunt-contrib-watch" : "~0.1.0",
-      "grunt-contrib-uglify" : "~0.1.0",
-      "grunt-contrib-mincss" : "~0.3.0",
+      "grunt": "~0.4",
+      "grunt-contrib-watch" : "~0.5",
+      "grunt-contrib-uglify" : "~0.2",
+      "grunt-contrib-cssmin" : "~0.4",
       "grunt-contrib-sass" : "https://github.com/basis42/grunt-..."
     }
   }
@@ -133,21 +145,21 @@ mario@ubuntu:~/sudo npm install grunt</code></pre>
 
   // Project configuration.
   grunt.initConfig({
-    mincss : {
+    cssmin : {
       compress : {
         files : {'../css/all.min.css' : ['../css/all.css']}
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-mincss');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('default', ['mincss']);
+  grunt.registerTask('default', ['cssmin']);
 };</code></pre>
   </section>
   <section>
 <pre><code>mario@ubuntu:~/grunt.js_talk/example/build$ grunt
-Running "mincss:compress" (mincss) task
+Running "cssmin:compress" (cssmin) task
 File ../css/all.min.css created.
 Uncompressed size: 743 bytes.
 Compressed size: 244 bytes gzipped (696 bytes minified).
@@ -163,9 +175,13 @@ mario@ubuntu:~/grunt.js_talk/example/build$</code></pre>
       files : [ 'grunt.js', '../js/**/*.js' ]
     },
     watch : {
+      options : {
+        livereload : true,
+        spawn: false
+      },
       css : {
         files : ['../css/**/*.scss'],
-        tasks : ['sass', 'mincss']
+        tasks : ['sass', 'cssmin']
       },
       js : {
         files : ['../js/**/*.js'],
@@ -186,7 +202,7 @@ mario@ubuntu:~/grunt.js_talk/example/build$</code></pre>
         files : {'../css/all.css' : ['../css/main.scss']}
       }
     },
-    mincss : {
+    cssmin : {
       compress : {
         files : {'../css/all.min.css' : ['../css/all.css']}
       }
@@ -195,19 +211,19 @@ mario@ubuntu:~/grunt.js_talk/example/build$</code></pre>
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-mincss');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.loadTasks('example-local-plugin/tasks');
 
-  grunt.registerTask('default', ['sass', 'mincss', 'uglify']);
+  grunt.registerTask('default', ['sass', 'cssmin', 'uglify']);
 };</code></pre>
   </section>
   <section>
   <pre><code>mario@ubuntu:~/grunt.js_talk/example/build$ grunt
 Running "sass:scss" (sass) task
 
-Running "mincss:compress" (mincss) task
+Running "cssmin:compress" (mincss) task
 File ../css/all.min.css created.
 Uncompressed size: 743 bytes.
 Compressed size: 244 bytes gzipped (696 bytes minified).

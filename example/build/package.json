@@ -5,11 +5,11 @@
   "version":"0.1.0",
 
   "dependencies": {
-    "grunt": "~0.4.0",
-    "grunt-contrib-watch" : "~0.1.0",
-    "grunt-contrib-uglify" : "~0.1.0",
-    "grunt-contrib-mincss" : "~0.3.0",
-    "grunt-contrib-sass" : "https://github.com/basis42/grunt-contrib-sass/tarball/grunt-contrib-sass-debug-info-fix"
+    "grunt": "0.4.1",
+    "grunt-contrib-watch" : "~0.5",
+    "grunt-contrib-uglify" : "~0.2",
+    "grunt-contrib-cssmin" : "~0.4",
+    "grunt-contrib-sass" : "~0.5"
   }
 
 }
